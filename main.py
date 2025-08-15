@@ -23,8 +23,8 @@ class MathTrainer:
         self.start_time = 0
         
     def clear_screen(self):
-        """Clear the screen (placeholder for TI implementation)"""
-        print("\n" * 50)
+        """Clear the screen for TI-84 (small screen)"""
+        print("\n" + "="*20 + "\n")
         
     def display_menu(self):
         """Display the main level selection menu"""
@@ -386,7 +386,7 @@ class MathTrainer:
             
         print()
         print("Press ENTER to continue...")
-        input()
+        input("Press ENTER to continue...")
         
     def run_level(self, level):
         """Run a complete level session"""
@@ -398,7 +398,7 @@ class MathTrainer:
             
             if self.timed_mode:
                 self.start_time = time.time()
-                print(f"Time: {time.time() - self.start_time:.1f}s")
+                print(f"Timer started!")
                 print()
                 
             print(f"Question {question_num}/{self.num_questions}")
@@ -409,6 +409,9 @@ class MathTrainer:
             
             if level == 5:  # AMC 8 problems show choices
                 print(f"Choices: {extra_info}")
+                print("Enter A, B, C, D, or E (or the number):")
+            elif level == 6:  # Quadratic format hint
+                print("Enter solutions separated by comma, e.g., 2,3")
                 
             print()
             print("Enter your answer:")
@@ -426,6 +429,9 @@ class MathTrainer:
                         print(f"Problem: {problem}")
                         if level == 5:
                             print(f"Choices: {extra_info}")
+                            print("Enter A, B, C, D, or E (or the number):")
+                        elif level == 6:
+                            print("Enter solutions separated by comma, e.g., 2,3")
                         print()
                         print("Enter your answer:")
                         continue
@@ -439,9 +445,18 @@ class MathTrainer:
                             is_correct = user_answers == correct_answer
                         else:
                             is_correct = False
+                    elif level == 5:  # Multiple choice - allow letters or numbers
+                        # Convert letter to number (A=1, B=2, etc.)
+                        if user_input in ['A', 'B', 'C', 'D', 'E']:
+                            letter_to_num = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5}
+                            user_answer = letter_to_num[user_input]
+                        else:
+                            user_answer = int(user_input)
+                        is_correct = user_answer == correct_answer
                     else:
                         user_answer = float(user_input)
-                        is_correct = abs(user_answer - correct_answer) < 0.01
+                        # Use round() for better floating point comparison
+                        is_correct = round(user_answer, 3) == round(correct_answer, 3)
                         
                     if is_correct:
                         print("CORRECT! ✓")
@@ -454,11 +469,16 @@ class MathTrainer:
                     break
                     
                 except ValueError:
-                    print("Please enter a valid number (or 'M' for solution):")
+                    if level == 5:
+                        print("Please enter A, B, C, D, E, or a number (or 'M' for solution):")
+                    elif level == 6:
+                        print("Please enter numbers separated by comma, e.g., 2,3 (or 'M' for solution):")
+                    else:
+                        print("Please enter a valid number (or 'M' for solution):")
                     
             print()
             print("Press ENTER to continue...")
-            input()
+            input("Press ENTER to continue...")
             
     def show_results(self):
         """Show final results"""
@@ -479,7 +499,7 @@ class MathTrainer:
             
         print()
         print("Press ENTER to return to main menu...")
-        input()
+        input("Press ENTER to return to main menu...")
         
     def run(self):
         """Main program loop"""
@@ -495,7 +515,9 @@ class MathTrainer:
                 self.current_level = level_choice
                 self.show_level_info(level_choice)
                 
-                if input().strip() == "":
+                # Use prompt instead of empty input check
+                user_input = input("Press ENTER to start, any other key to go back: ").strip()
+                if user_input == "":
                     self.get_timed_preference()
                     self.get_question_count()
                     self.run_level(level_choice)
