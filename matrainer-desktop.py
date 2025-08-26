@@ -1,5 +1,5 @@
-# Math Trainer Program for TI MicroPython
-# A comprehensive mental math training program with 6 difficulty levels
+# Math Trainer Program for desktop
+## THIS FILE IS NOT TO BE USED FOR THE TI-84 PLUS CE, INSTEAD, USE THE FILE NAMED "math-trainer-lite.py"
 
 import random
 import math
