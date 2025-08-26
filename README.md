@@ -19,11 +19,7 @@ a comprehensive mental math training program designed specifically for ti-84 plu
 - **level 5**: amc 8-style word problems (multiple choice)
 - **level 6**: quadratic equations (factoring and guess-and-check)
 
-### **smart problem generation**
-- **adaptive difficulty** within each level
-- **realistic amc 8 problems** covering percentages, algebra, geometry, fractions, number theory, and word problems
-- **clean division problems** with whole number results
-- **mixed operations** combining multiple mathematical concepts
+
 
 ## 📚 level details
 
@@ -77,6 +73,29 @@ a comprehensive mental math training program designed specifically for ti-84 plu
 - **problem types**: factorable quadratic equations
 - **examples**: x² - 5x + 6 = 0
 - **math button**: factoring techniques and solution methods
+- 
+# 🔧 Installation & Usage
+Installation (Sending to Calculator)
+Save the program file as math_trainer_lite.py on your computer.
+Open TI Connect CE (v5.6 or later required for Python support).
+Go to the Content Explorer tab (shows your calculator’s files).
+Drag and drop the .py file onto your calculator’s name.
+
+⚠️ Do not use “Send to Calculators” (this converts it to .8xp which only works for TI-BASIC).
+
+The file should transfer as a Python AppVar, not a Program.
+
+## Running on Calculator
+
+On your TI-84 Plus CE Python, press the [APPS] button.
+Select the Python app.
+Your file (e.g., math_trainer_lite) should appear in the script list. You can choose to rename it when you send the program to your calculator.
+Select it → press ENTER → then choose MENU → Run.
+Follow the on-screen prompts to start training!
+
+❓ Questions / Help
+
+If you run into problems transferring or running the program, check out the r/TI_Calculators on Reddit.
 
 ## 🎮 how to use
 
@@ -95,11 +114,6 @@ a comprehensive mental math training program designed specifically for ti-84 plu
 - **'m' key**: show math button solution/explanation
 - **any other key**: go back to previous menu
 
-### **session flow**
-```
-main menu → level selection → level info → timing option → 
-question count → problem solving → results → return to menu
-```
 
 ## 🔧 technical requirements
 
@@ -113,7 +127,7 @@ question count → problem solving → results → return to menu
 - uses only standard libraries: `random`, `math`, `time`
 
 ### **installation**
-1. transfer `main.py` to your ti-84 plus ce calculator
+1. transfer file to your ti-84 plus ce calculator
 2. run the program from the calculator's python environment
 3. follow the on-screen prompts to begin training
 
@@ -208,5 +222,3 @@ this project is designed for educational use. suggestions for improvements, addi
 this project is open source and available under the mit license.
 
 ---
-
-**happy math training! 🧮✨**
